@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>சட்டச் சொற்களஞ்சியம் (Law Glossary)</title>
+  <style>
+    body {
+      font-family: "Noto Sans Tamil", Arial, sans-serif;
+      background-color: #fafafa;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #222;
+      font-size: 28px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+    button {
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>சட்டச் சொற்களஞ்சியம் (Tamil Law Glossary)</h1>
+
+  <input type="text" id="search" placeholder="தேடல் (Enter term)...">
+  <button id="searchBtn">தேடு (Search)</button>
+
+  <table id="glossary">
+    <thead>
+      <tr>
+        <th>சொல் (Term)</th>
+        <th>வரையறை (Definition)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <footer>
+    <p>தகவல் மூலம்: Google Sheets | உருவாக்கம்: உங்கள் GitHub Pages தளம்</p>
+  </footer>
+
+  <script>
+    const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQabt4EqJhP0BoaMbaFW2ztCqVOhq-QMT_ABP8S6qyM3b3t41qnSt-Vb-rIgxvMfoCV5PNTzx3tpJeC/pub?output=csv";
+
+    let allRows = [];
+
+    // Load sheet data
+    fetch(sheetUrl)
+      .then(res => res.text())
+      .then(data => {
+        const rows = data.split("\n").slice(1);
+        const tbody = document.querySelector("#glossary tbody");
+        rows.forEach(row => {
+          const [term, definition] = row.split(",");
+          if (term && definition) {
+            allRows.push({term, definition});
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${term}</td><td>${definition}</td>`;
+            tbody.appendChild(tr);
+          }
+        });
+      });
+
+    // Search button functionality
+    document.getElementById("searchBtn").addEventListener("click", function() {
+      const filter = document.getElementById("search").value.toLowerCase();
+      const tbody = document.querySelector("#glossary tbody");
+      tbody.innerHTML = ""; // Clear table
+      allRows.forEach(row => {
+        if (row.term.toLowerCase().includes(filter) || row.definition.toLowerCase().includes(filter)) {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td>${row.term}</td><td>${row.definition}</td>`;
+          tbody.appendChild(tr);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
