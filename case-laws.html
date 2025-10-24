@@ -4,57 +4,72 @@
 <meta charset="UTF-8">
 <title>Case Law Portal</title>
 <style>
-body { font-family: Arial, sans-serif; margin: 20px; }
-input { padding: 8px; width: 300px; margin-bottom: 20px; }
-ul { list-style: none; padding: 0; }
-li { margin: 10px 0; }
-a { color: blue; text-decoration: none; cursor: pointer; }
-a:hover { text-decoration: underline; }
-iframe { width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 20px; }
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  h1 { margin-bottom: 20px; }
+  input { padding: 8px; width: 300px; margin-bottom: 20px; }
+  ul { list-style: none; padding: 0; }
+  li { margin: 8px 0; }
+  a { color: blue; text-decoration: none; cursor: pointer; }
+  a:hover { text-decoration: underline; }
+  iframe { width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 20px; }
 </style>
 </head>
 <body>
 
 <h1>Case Laws</h1>
+
 <input type="text" id="search" placeholder="Search cases...">
+
 <ul id="caseList"></ul>
 
-<iframe id="caseFrame" src=""></iframe>
+<iframe id="caseFrame" src="https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true"></iframe>
 
 <script>
-// List of cases: name + published Google Docs link
+// Array of cases: name + embedded Google Docs link
 const cases = [
-    { name: "Karonchihamy v. Angohamy", link: "https://docs.google.com/document/d/e/YOUR_DOC_ID/pub?embedded=true" },
-    { name: "Dudley v. Dudley", link: "https://docs.google.com/document/d/e/YOUR_DOC_ID2/pub?embedded=true" },
-    { name: "Marbury v. Madison", link: "https://docs.google.com/document/d/e/YOUR_DOC_ID3/pub?embedded=true" },
-    { name: "Fisher v. Bell", link: "https://docs.google.com/document/d/e/YOUR_DOC_ID4/pub?embedded=true" }
+    {
+        name: "Karonchihamy v. Angohamy",
+        link: "https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true"
+    },
+    {
+        name: "Dudley v. Dudley",
+        link: "https://docs.google.com/document/d/e/YOUR_DOC_ID2/pub?embedded=true"
+    },
+    {
+        name: "Marbury v. Madison",
+        link: "https://docs.google.com/document/d/e/YOUR_DOC_ID3/pub?embedded=true"
+    },
+    {
+        name: "Fisher v. Bell",
+        link: "https://docs.google.com/document/d/e/YOUR_DOC_ID4/pub?embedded=true"
+    }
 ];
 
+// Elements
 const caseList = document.getElementById('caseList');
 const searchInput = document.getElementById('search');
 const caseFrame = document.getElementById('caseFrame');
 
-// Display the list
-function displayCases(filter="") {
+// Display cases in the list
+function displayCases(filter = "") {
     caseList.innerHTML = "";
-    cases.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()))
-         .forEach(c => {
+    cases
+        .filter(c => c.name.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(c => {
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.textContent = c.name;
             a.onclick = () => caseFrame.src = c.link;
             li.appendChild(a);
             caseList.appendChild(li);
-         });
+        });
 }
 
 // Initial display
 displayCases();
 
-// Filter as user types
-searchInput.addEventListener('input', (e) => {
-    displayCases(e.target.value);
-});
+// Filter list as user types
+searchInput.addEventListener('input', (e) => displayCases(e.target.value));
 </script>
 
 </body>
