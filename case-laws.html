@@ -1,75 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Case Law Portal</title>
-<style>
-  body { font-family: Arial, sans-serif; margin: 20px; }
-  h1 { margin-bottom: 20px; }
-  input { padding: 8px; width: 300px; margin-bottom: 20px; }
-  ul { list-style: none; padding: 0; }
-  li { margin: 8px 0; }
-  a { color: blue; text-decoration: none; cursor: pointer; }
-  a:hover { text-decoration: underline; }
-  iframe { width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 20px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Doc Viewer with Search</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #222;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      max-width: 500px;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+    }
+
+    button {
+      padding: 10px 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<h1>Case Laws</h1>
+<div class="container">
+  <h1>Case Law Viewer: Karonchihamy v. Angohamy</h1>
+  
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search in document...">
+    <button onclick="searchDoc()">Search</button>
+  </div>
 
-<input type="text" id="search" placeholder="Search cases...">
-
-<ul id="caseList"></ul>
-
-<iframe id="caseFrame" src="https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true"></iframe>
+  <iframe id="docFrame" src="https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true"></iframe>
+</div>
 
 <script>
-// Array of cases: name + embedded Google Docs link
-const cases = [
-    {
-        name: "Karonchihamy v. Angohamy",
-        link: "https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true"
-    },
-    {
-        name: "Dudley v. Dudley",
-        link: "https://docs.google.com/document/d/e/YOUR_DOC_ID2/pub?embedded=true"
-    },
-    {
-        name: "Marbury v. Madison",
-        link: "https://docs.google.com/document/d/e/YOUR_DOC_ID3/pub?embedded=true"
-    },
-    {
-        name: "Fisher v. Bell",
-        link: "https://docs.google.com/document/d/e/YOUR_DOC_ID4/pub?embedded=true"
-    }
-];
+function searchDoc() {
+  const query = document.getElementById("searchInput").value.trim();
+  const iframe = document.getElementById("docFrame");
+  const baseUrl = "https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true";
 
-// Elements
-const caseList = document.getElementById('caseList');
-const searchInput = document.getElementById('search');
-const caseFrame = document.getElementById('caseFrame');
-
-// Display cases in the list
-function displayCases(filter = "") {
-    caseList.innerHTML = "";
-    cases
-        .filter(c => c.name.toLowerCase().includes(filter.toLowerCase()))
-        .forEach(c => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.textContent = c.name;
-            a.onclick = () => caseFrame.src = c.link;
-            li.appendChild(a);
-            caseList.appendChild(li);
-        });
+  // Reload iframe with #search= to jump to the word
+  iframe.src = query ? baseUrl + "#search=" + encodeURIComponent(query) : baseUrl;
 }
 
-// Initial display
-displayCases();
-
-// Filter list as user types
-searchInput.addEventListener('input', (e) => displayCases(e.target.value));
+// Optional: allow pressing Enter to search
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    searchDoc();
+  }
+});
 </script>
 
 </body>
