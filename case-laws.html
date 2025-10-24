@@ -1,106 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Doc Viewer with Search</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Law Library</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f7f7f7;
       margin: 0;
       padding: 0;
-      color: #333;
+    }
+
+    header {
+      background: #1e3a8a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
     }
 
     .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 1100px;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
 
-    h1 {
+    .case-list {
+      background: #f3f4f6;
+      padding: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .case-list button {
+      background: #1e40af;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .case-list button:hover {
+      background: #2563eb;
+    }
+
+    .viewer {
+      padding: 20px;
       text-align: center;
-      color: #222;
+    }
+
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      border-top: 1px solid #ccc;
     }
 
     .search-bar {
       text-align: center;
-      margin-bottom: 20px;
+      margin: 20px;
     }
 
     input[type="text"] {
+      padding: 10px;
       width: 80%;
       max-width: 500px;
-      padding: 10px 14px;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 16px;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    input[type="text"]:focus {
-      border-color: #007BFF;
-      box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
-    }
-
-    #content {
-      line-height: 1.7;
-      font-size: 17px;
-      overflow-y: auto;
-    }
-
-    mark {
-      background: yellow;
-      padding: 0 2px;
     }
   </style>
 </head>
 <body>
+  <header>Case Law Library</header>
 
   <div class="container">
-    <h1>Google Document Viewer</h1>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search in document...">
+    <div class="case-list">
+      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true')">Karonchihamy v. Angohamy</button>
+      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL1/pub?embedded=true')">Dudley v. Dudley</button>
+      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL2/pub?embedded=true')">Marbury v. Madison</button>
+      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL3/pub?embedded=true')">Fisher v. Bell</button>
+      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL4/pub?embedded=true')">R v. Allen</button>
+      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL5/pub?embedded=true')">Adler v. George</button>
     </div>
-    <div id="content">Loading document...</div>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search in current case (Ctrl+F also works)" />
+    </div>
+
+    <div class="viewer">
+      <iframe id="docFrame" src=""></iframe>
+    </div>
   </div>
 
   <script>
-    const contentDiv = document.getElementById("content");
-    const searchInput = document.getElementById("searchInput");
-
-    // Replace this with your published Google Doc URL
-    const googleDocURL = "https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true";
-
-    // Fetch the Google Doc content and inject it
-    fetch(googleDocURL)
-      .then(res => res.text())
-      .then(html => {
-        contentDiv.innerHTML = html;
-      })
-      .catch(() => {
-        contentDiv.innerHTML = "❌ Failed to load document.";
-      });
-
-    // Search feature
-    searchInput.addEventListener("input", () => {
-      const term = searchInput.value.trim().toLowerCase();
-      const contentText = contentDiv.innerText;
-      if (!term) {
-        contentDiv.innerHTML = contentText;
-        return;
-      }
-
-      const regex = new RegExp(`(${term})`, "gi");
-      const highlighted = contentText.replace(regex, "<mark>$1</mark>");
-      contentDiv.innerHTML = highlighted;
-    });
+    function loadCase(url) {
+      document.getElementById("docFrame").src = url;
+      document.getElementById("searchInput").value = "";
+    }
   </script>
-
 </body>
 </html>
