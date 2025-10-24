@@ -20,17 +20,18 @@
 <div id="caseContent">Click a case to view content here.</div>
 
 <script>
+// Replace with your Google Docs API key
 const API_KEY = "AIzaSyC-zNKxgPBrrWANE2ThNnvM5I_c8hw5D94";
 
-// Map of case names → Google Docs IDs
+// Map of case names to Google Docs IDs
 const cases = {
     "Karonchihamy v. Angohamy": "2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR",
     "Dudley v. Dudley": "ANOTHER_DOC_ID",
-    "Marbury v. Madison": "ANOTHER_DOC_ID2",
-    "Fisher v. Bell": "ANOTHER_DOC_ID3"
+    "Marbury v. Madison": "ANOTHER_DOC_ID",
+    "Fisher v. Bell": "ANOTHER_DOC_ID"
 };
 
-// Generate case list dynamically
+// Dynamically generate the list of cases
 const caseList = document.getElementById('caseList');
 for (const [name, docId] of Object.entries(cases)) {
     const li = document.createElement('li');
@@ -41,21 +42,21 @@ for (const [name, docId] of Object.entries(cases)) {
     caseList.appendChild(li);
 }
 
-// Fetch and display Google Doc content
+// Load Google Doc content
 function loadCase(docId) {
     document.getElementById('caseContent').textContent = "Loading...";
     fetch(`https://docs.googleapis.com/v1/documents/${docId}?key=${API_KEY}`)
-    .then(res => res.json())
-    .then(data => {
-        const paragraphs = data.body.content
-            .map(p => p.paragraph?.elements?.map(e => e.textRun?.content).join('') || '')
-            .join('\n\n');
-        document.getElementById('caseContent').innerHTML = paragraphs || "No content found.";
-    })
-    .catch(err => {
-        console.error(err);
-        document.getElementById('caseContent').textContent = "Error loading case content.";
-    });
+        .then(res => res.json())
+        .then(data => {
+            const paragraphs = data.body.content
+                .map(p => p.paragraph?.elements?.map(e => e.textRun?.content).join('') || '')
+                .join('\n\n');
+            document.getElementById('caseContent').innerHTML = paragraphs || "No content found.";
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('caseContent').textContent = "Error loading case content.";
+        });
 }
 </script>
 
