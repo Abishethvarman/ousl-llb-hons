@@ -1,128 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Law Library</title>
-  <style>
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-      color: #222;
-    }
-
-    header {
-      background: #1e3a8a;
-      color: #fff;
-      text-align: center;
-      padding: 20px 10px;
-      font-size: 24px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 30px auto;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-
-    .case-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 15px;
-      background: #f3f4f6;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .case-list button {
-      background: #1e40af;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-      transition: 0.3s;
-    }
-
-    .case-list button:hover {
-      background: #2563eb;
-    }
-
-    .viewer {
-      padding: 10px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 80vh;
-      border: none;
-      border-top: 1px solid #ccc;
-    }
-
-    .search-note {
-      text-align: center;
-      font-size: 14px;
-      color: #666;
-      margin: 10px 0;
-    }
-
-    @media (max-width: 600px) {
-      .case-list button {
-        font-size: 14px;
-        padding: 8px 12px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Case Law Portal</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  ul { list-style: none; padding: 0; }
+  li { margin: 10px 0; }
+  a { color: blue; cursor: pointer; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  #caseContent { border: 1px solid #ccc; padding: 20px; margin-top: 20px; white-space: pre-wrap; }
+</style>
 </head>
 <body>
 
-  <header>📘 Case Law Library</header>
+<h1>Case Laws</h1>
+<ul id="caseList"></ul>
 
-  <div class="container">
-    <div class="case-list">
-      <!-- Replace each link below with your Google Doc embed link -->
-      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR/pub?embedded=true')">
-        Karonchihamy v. Angohamy
-      </button>
-      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL1/pub?embedded=true')">
-        Dudley v. Dudley
-      </button>
-      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL2/pub?embedded=true')">
-        Marbury v. Madison
-      </button>
-      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL3/pub?embedded=true')">
-        Fisher v. Bell
-      </button>
-      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL4/pub?embedded=true')">
-        R v Allen
-      </button>
-      <button onclick="loadCase('https://docs.google.com/document/d/e/2PACX-1vRANDOMURL5/pub?embedded=true')">
-        Adler v George
-      </button>
-    </div>
+<div id="caseContent">Click a case to view content here.</div>
 
-    <div class="search-note">
-      💡 Tip: Use <strong>Ctrl + F</strong> or <strong>Cmd + F</strong> to search inside the case.
-    </div>
+<script>
+const API_KEY = "AIzaSyC-zNKxgPBrrWANE2ThNnvM5I_c8hw5D94";
 
-    <div class="viewer">
-      <iframe id="docFrame" src=""></iframe>
-    </div>
-  </div>
+// Map of case names → Google Docs IDs
+const cases = {
+    "Karonchihamy v. Angohamy": "2PACX-1vQKUlXwib94SvigPTwzoRrymaA1kGjU5vbn_6nNrdfPLoFToGvflhkIV3PpoOMh8_KO58LJ9A-jYphR",
+    "Dudley v. Dudley": "ANOTHER_DOC_ID",
+    "Marbury v. Madison": "ANOTHER_DOC_ID2",
+    "Fisher v. Bell": "ANOTHER_DOC_ID3"
+};
 
-  <script>
-    function loadCase(url) {
-      document.getElementById("docFrame").src = url;
-    }
-  </script>
+// Generate case list dynamically
+const caseList = document.getElementById('caseList');
+for (const [name, docId] of Object.entries(cases)) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.textContent = name;
+    a.onclick = () => loadCase(docId);
+    li.appendChild(a);
+    caseList.appendChild(li);
+}
+
+// Fetch and display Google Doc content
+function loadCase(docId) {
+    document.getElementById('caseContent').textContent = "Loading...";
+    fetch(`https://docs.googleapis.com/v1/documents/${docId}?key=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+        const paragraphs = data.body.content
+            .map(p => p.paragraph?.elements?.map(e => e.textRun?.content).join('') || '')
+            .join('\n\n');
+        document.getElementById('caseContent').innerHTML = paragraphs || "No content found.";
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById('caseContent').textContent = "Error loading case content.";
+    });
+}
+</script>
+
 </body>
 </html>
