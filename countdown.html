@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Law Exam Countdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #020617;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      color: #38bdf8;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    .quote {
+      background: #020617;
+      padding: 15px;
+      border-left: 5px solid #38bdf8;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+    .timer-box {
+      background: #020617;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    .timer-box h2 {
+      margin-top: 0;
+      color: #22d3ee;
+    }
+    .time {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Law Exam Countdown Timer</h1>
+</header>
+
+<div class="container">
+
+  <!-- Motivation Quote -->
+  <div class="quote" id="quoteBox"></div>
+
+  <!-- Main Exam Countdown -->
+  <div class="timer-box">
+    <h2>📅 Overall Exam Countdown</h2>
+    <div class="time" id="mainExam"></div>
+  </div>
+
+  <!-- Subject Countdowns -->
+  <div class="timer-box">
+    <h2>⚖️ Constitutional Law</h2>
+    <div class="time" id="subject1"></div>
+  </div>
+
+  <div class="timer-box">
+    <h2>📜 Criminal Law</h2>
+    <div class="time" id="subject2"></div>
+  </div>
+
+  <div class="timer-box">
+    <h2>🏛️ Jurisprudence</h2>
+    <div class="time" id="subject3"></div>
+  </div>
+
+</div>
+
+<footer>
+  Stay disciplined. Stay ethical. Become a great lawyer.
+</footer>
+
+<script>
+  // =====================
+  // EXAM DATES (EDIT HERE)
+  // =====================
+  const examStartDate = new Date("2026-03-01T09:00:00");
+
+  const subjects = {
+    subject1: new Date("2026-03-01T09:00:00"), // Constitutional Law
+    subject2: new Date("2026-03-05T09:00:00"), // Criminal Law
+    subject3: new Date("2026-03-10T09:00:00"), // Jurisprudence
+  };
+
+  // =====================
+  // MOTIVATIONAL QUOTES
+  // =====================
+  const quotes = [
+    "The law is reason, free from passion.",
+    "A good lawyer knows the law; a great lawyer knows justice.",
+    "Discipline today creates the advocate of tomorrow.",
+    "Every great lawyer was once a student who refused to quit.",
+    "Justice delayed is knowledge denied — keep studying.",
+    "Law is not just a profession, it is a responsibility.",
+  ];
+
+  function updateQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById("quoteBox").innerText = quotes[randomIndex];
+  }
+
+  // =====================
+  // COUNTDOWN FUNCTION
+  // =====================
+  function countdown(targetDate, elementId) {
+    const now = new Date().getTime();
+    const distance = targetDate.getTime() - now;
+
+    if (distance < 0) {
+      document.getElementById(elementId).innerText = "Exam Started";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById(elementId).innerText =
+      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  function updateTimers() {
+    countdown(examStartDate, "mainExam");
+    countdown(subjects.subject1, "subject1");
+    countdown(subjects.subject2, "subject2");
+    countdown(subjects.subject3, "subject3");
+  }
+
+  // Initial Load
+  updateQuote();
+  updateTimers();
+
+  // Update every second
+  setInterval(updateTimers, 1000);
+
+  // Change quote every 30 seconds
+  setInterval(updateQuote, 30000);
+</script>
+
+</body>
+</html>
