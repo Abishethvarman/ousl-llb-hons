@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Law Exam Countdown</title>
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -11,21 +12,25 @@
       color: #e5e7eb;
       margin: 0;
     }
+
     header {
       text-align: center;
       padding: 30px 15px;
       background: radial-gradient(circle, #0f172a, #020617);
     }
+
     h1 {
       margin: 0;
       font-size: 2.8rem;
       color: #38bdf8;
     }
+
     .container {
       max-width: 1100px;
       margin: 20px auto;
       padding: 20px;
     }
+
     .quote {
       background: #020617;
       padding: 20px;
@@ -35,7 +40,7 @@
       font-style: italic;
     }
 
-    /* MAIN EXAM TIMER */
+    /* ================= MAIN EXAM TIMER ================= */
     .main-timer {
       background: #020617;
       padding: 35px;
@@ -44,36 +49,44 @@
       margin-bottom: 40px;
       box-shadow: 0 0 25px rgba(56,189,248,0.3);
     }
+
     .main-timer h2 {
       color: #22d3ee;
       margin-bottom: 15px;
     }
+
     .digital-big {
       font-family: 'Courier New', monospace;
       font-size: 3.5rem;
       letter-spacing: 3px;
       color: #38bdf8;
+      max-width: 100%;
+      word-break: break-word;
     }
 
-    /* SUBJECT TIMERS */
+    /* ================= SUBJECT TIMERS ================= */
     .subjects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
+
     .subject {
       background: #020617;
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 0 12px rgba(0,0,0,0.6);
     }
+
     .subject h3 {
       margin-top: 0;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      line-height: 1.4;
     }
+
     .digital {
       font-family: 'Courier New', monospace;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       letter-spacing: 2px;
       margin-top: 10px;
     }
@@ -84,8 +97,40 @@
       font-size: 0.95rem;
       color: #9ca3af;
     }
+
+    /* ================= MOBILE FIX ================= */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .digital-big {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+      }
+
+      .digital {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .digital-big {
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+      }
+
+      .quote {
+        font-size: 1rem;
+      }
+
+      footer {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -109,26 +154,32 @@
       <h3>LLU3601 Legal System and Legal History of Sri Lanka</h3>
       <div class="digital" id="s1"></div>
     </div>
+
     <div class="subject" style="border-top:4px solid #f97316">
-      <h3>LLU3602 Legal Methodvand Legal Writing</h3>
+      <h3>LLU3602 Legal Method and Legal Writing</h3>
       <div class="digital" id="s2"></div>
     </div>
+
     <div class="subject" style="border-top:4px solid #22c55e">
       <h3>LLU3303 Roman Law</h3>
       <div class="digital" id="s3"></div>
     </div>
+
     <div class="subject" style="border-top:4px solid #a855f7">
       <h3>LLU3604 Constitutional Law I</h3>
       <div class="digital" id="s4"></div>
     </div>
+
     <div class="subject" style="border-top:4px solid #eab308">
-      <h3>LLU3505 Equity and Trust Law </h3>
+      <h3>LLU3505 Equity and Trust Law</h3>
       <div class="digital" id="s5"></div>
     </div>
+
     <div class="subject" style="border-top:4px solid #ec4899">
-      <h3>LLU3604 Interpretation of Statutes and Documents </h3>
+      <h3>LLU3406 Interpretation of Statutes and Documents</h3>
       <div class="digital" id="s6"></div>
     </div>
+
     <div class="subject" style="border-top:4px solid #14b8a6">
       <h3>LTE3603 English for Legal Studies</h3>
       <div class="digital" id="s7"></div>
@@ -142,59 +193,62 @@
 </footer>
 
 <script>
+  /* ================= DATES ================= */
   const examStart = new Date("2026-01-27T09:30:00");
 
   const subjects = [
-  // 27.01.2026
-  new Date("2026-01-27T09:30:00"), // LLU3601 Legal System & Legal History
-  new Date("2026-01-27T13:30:00"), // LLU3602 Legal Method & Legal Writing
+    new Date("2026-01-27T09:30:00"),
+    new Date("2026-01-27T13:30:00"),
+    new Date("2026-01-29T09:30:00"),
+    new Date("2026-01-29T13:30:00"),
+    new Date("2026-01-31T09:30:00"),
+    new Date("2026-01-31T13:30:00"),
+    new Date("2026-02-02T09:30:00"),
+  ];
 
-  // 29.01.2026
-  new Date("2026-01-29T09:30:00"), // LLU3303 Roman Law
-  new Date("2026-01-29T13:30:00"), // LLU3604 Constitutional Law I
-
-  // 31.01.2026
-  new Date("2026-01-31T09:30:00"), // LLU3505 Equity & Trusts
-  new Date("2026-01-31T13:30:00"), // LLU3406 Interpretation of Statutes
-
-  // Optional: English paper (if CAT II date later)
-  new Date("2026-02-02T09:30:00"), // LTE3603 English for Legal Studies
-];
-
-
+  /* ================= MOTIVATION ================= */
   const quotes = [
-    "Every page you study today becomes confidence in the exam hall.",
-    "Law rewards consistency, not last-minute panic.",
-    "Your discipline today builds your authority tomorrow.",
-    "Exams test memory, but preparation builds character.",
-    "Future advocates are forged in silent study rooms.",
-    "Justice begins with preparation.",
+    "CAT exams reward preparation, not pressure.",
+    "One hour of focused study today saves panic tomorrow.",
+    "Consistency decides your results.",
+    "Law is built through revision, not shortcuts.",
+    "Silence now. Confidence in the exam hall.",
+    "Strong fundamentals make strong advocates."
   ];
 
   function formatDigital(ms) {
-    if (ms < 0) return "00:00:00:00";
+    if (ms < 0) return "00d 00h 00m 00s";
+
     const d = Math.floor(ms / (1000*60*60*24));
     const h = Math.floor((ms / (1000*60*60)) % 24);
     const m = Math.floor((ms / (1000*60)) % 60);
     const s = Math.floor((ms / 1000) % 60);
+
+    if (window.innerWidth < 480) {
+      return `${d}d ${h}h ${m}m ${s}s`;
+    }
+
     return `${String(d).padStart(2,'0')}:${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   }
 
-  function update() {
+  function updateTimers() {
     const now = new Date().getTime();
     document.getElementById("mainExam").innerText = formatDigital(examStart - now);
-    subjects.forEach((d, i) => {
-      document.getElementById("s"+(i+1)).innerText = formatDigital(d - now);
+
+    subjects.forEach((date, i) => {
+      document.getElementById("s" + (i + 1)).innerText =
+        formatDigital(date - now);
     });
   }
 
   function newQuote() {
-    document.getElementById("quoteBox").innerText = quotes[Math.floor(Math.random()*quotes.length)];
+    document.getElementById("quoteBox").innerText =
+      quotes[Math.floor(Math.random() * quotes.length)];
   }
 
   newQuote();
-  update();
-  setInterval(update, 1000);
+  updateTimers();
+  setInterval(updateTimers, 1000);
   setInterval(newQuote, 30000);
 </script>
 
