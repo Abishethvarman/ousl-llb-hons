@@ -6,53 +6,82 @@
   <title>Law Exam Countdown</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
+      font-family: 'Segoe UI', sans-serif;
+      background: #020617;
       color: #e5e7eb;
       margin: 0;
-      padding: 0;
     }
     header {
-      background: #020617;
-      padding: 20px;
       text-align: center;
+      padding: 30px 15px;
+      background: radial-gradient(circle, #0f172a, #020617);
     }
     h1 {
       margin: 0;
+      font-size: 2.8rem;
       color: #38bdf8;
     }
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 20px auto;
       padding: 20px;
     }
     .quote {
       background: #020617;
-      padding: 15px;
-      border-left: 5px solid #38bdf8;
-      margin-bottom: 30px;
+      padding: 20px;
+      border-left: 6px solid #22d3ee;
+      margin-bottom: 35px;
+      font-size: 1.1rem;
       font-style: italic;
     }
-    .timer-box {
+
+    /* MAIN EXAM TIMER */
+    .main-timer {
+      background: #020617;
+      padding: 35px;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 0 25px rgba(56,189,248,0.3);
+    }
+    .main-timer h2 {
+      color: #22d3ee;
+      margin-bottom: 15px;
+    }
+    .digital-big {
+      font-family: 'Courier New', monospace;
+      font-size: 3.5rem;
+      letter-spacing: 3px;
+      color: #38bdf8;
+    }
+
+    /* SUBJECT TIMERS */
+    .subjects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .subject {
       background: #020617;
       padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
     }
-    .timer-box h2 {
+    .subject h3 {
       margin-top: 0;
-      color: #22d3ee;
+      font-size: 1.2rem;
     }
-    .time {
-      font-size: 1.5rem;
+    .digital {
+      font-family: 'Courier New', monospace;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
       margin-top: 10px;
-      font-weight: bold;
     }
+
     footer {
       text-align: center;
-      padding: 15px;
-      font-size: 0.9rem;
+      padding: 20px;
+      font-size: 0.95rem;
       color: #9ca3af;
     }
   </style>
@@ -60,108 +89,105 @@
 <body>
 
 <header>
-  <h1>Law Exam Countdown Timer</h1>
+  <h1>Law Exam Countdown</h1>
 </header>
 
 <div class="container">
 
-  <!-- Motivation Quote -->
+  <!-- MOTIVATION -->
   <div class="quote" id="quoteBox"></div>
 
-  <!-- Main Exam Countdown -->
-  <div class="timer-box">
-    <h2>📅 Overall Exam Countdown</h2>
-    <div class="time" id="mainExam"></div>
+  <!-- MAIN EXAM -->
+  <div class="main-timer">
+    <h2>Overall Exam Countdown</h2>
+    <div class="digital-big" id="mainExam"></div>
   </div>
 
-  <!-- Subject Countdowns -->
-  <div class="timer-box">
-    <h2>⚖️ Constitutional Law</h2>
-    <div class="time" id="subject1"></div>
-  </div>
-
-  <div class="timer-box">
-    <h2>📜 Criminal Law</h2>
-    <div class="time" id="subject2"></div>
-  </div>
-
-  <div class="timer-box">
-    <h2>🏛️ Jurisprudence</h2>
-    <div class="time" id="subject3"></div>
+  <!-- SUBJECTS -->
+  <div class="subjects">
+    <div class="subject" style="border-top:4px solid #38bdf8">
+      <h3>Constitutional Law</h3>
+      <div class="digital" id="s1"></div>
+    </div>
+    <div class="subject" style="border-top:4px solid #f97316">
+      <h3>Criminal Law</h3>
+      <div class="digital" id="s2"></div>
+    </div>
+    <div class="subject" style="border-top:4px solid #22c55e">
+      <h3>Contract Law</h3>
+      <div class="digital" id="s3"></div>
+    </div>
+    <div class="subject" style="border-top:4px solid #a855f7">
+      <h3>Tort Law</h3>
+      <div class="digital" id="s4"></div>
+    </div>
+    <div class="subject" style="border-top:4px solid #eab308">
+      <h3>Jurisprudence</h3>
+      <div class="digital" id="s5"></div>
+    </div>
+    <div class="subject" style="border-top:4px solid #ec4899">
+      <h3>Property Law</h3>
+      <div class="digital" id="s6"></div>
+    </div>
+    <div class="subject" style="border-top:4px solid #14b8a6">
+      <h3>Evidence Law</h3>
+      <div class="digital" id="s7"></div>
+    </div>
   </div>
 
 </div>
 
 <footer>
-  Stay disciplined. Stay ethical. Become a great lawyer.
+  Study with discipline. Practice with integrity. Enter the court with confidence.
 </footer>
 
 <script>
-  // =====================
-  // EXAM DATES (EDIT HERE)
-  // =====================
-  const examStartDate = new Date("2026-03-01T09:00:00");
+  const examStart = new Date("2026-03-01T09:00:00");
 
-  const subjects = {
-    subject1: new Date("2026-03-01T09:00:00"), // Constitutional Law
-    subject2: new Date("2026-03-05T09:00:00"), // Criminal Law
-    subject3: new Date("2026-03-10T09:00:00"), // Jurisprudence
-  };
-
-  // =====================
-  // MOTIVATIONAL QUOTES
-  // =====================
-  const quotes = [
-    "The law is reason, free from passion.",
-    "A good lawyer knows the law; a great lawyer knows justice.",
-    "Discipline today creates the advocate of tomorrow.",
-    "Every great lawyer was once a student who refused to quit.",
-    "Justice delayed is knowledge denied — keep studying.",
-    "Law is not just a profession, it is a responsibility.",
+  const subjects = [
+    new Date("2026-03-01T09:00:00"),
+    new Date("2026-03-03T09:00:00"),
+    new Date("2026-03-05T09:00:00"),
+    new Date("2026-03-07T09:00:00"),
+    new Date("2026-03-09T09:00:00"),
+    new Date("2026-03-11T09:00:00"),
+    new Date("2026-03-13T09:00:00"),
   ];
 
-  function updateQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    document.getElementById("quoteBox").innerText = quotes[randomIndex];
+  const quotes = [
+    "Every page you study today becomes confidence in the exam hall.",
+    "Law rewards consistency, not last-minute panic.",
+    "Your discipline today builds your authority tomorrow.",
+    "Exams test memory, but preparation builds character.",
+    "Future advocates are forged in silent study rooms.",
+    "Justice begins with preparation.",
+  ];
+
+  function formatDigital(ms) {
+    if (ms < 0) return "00:00:00:00";
+    const d = Math.floor(ms / (1000*60*60*24));
+    const h = Math.floor((ms / (1000*60*60)) % 24);
+    const m = Math.floor((ms / (1000*60)) % 60);
+    const s = Math.floor((ms / 1000) % 60);
+    return `${String(d).padStart(2,'0')}:${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   }
 
-  // =====================
-  // COUNTDOWN FUNCTION
-  // =====================
-  function countdown(targetDate, elementId) {
+  function update() {
     const now = new Date().getTime();
-    const distance = targetDate.getTime() - now;
-
-    if (distance < 0) {
-      document.getElementById(elementId).innerText = "Exam Started";
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById(elementId).innerText =
-      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    document.getElementById("mainExam").innerText = formatDigital(examStart - now);
+    subjects.forEach((d, i) => {
+      document.getElementById("s"+(i+1)).innerText = formatDigital(d - now);
+    });
   }
 
-  function updateTimers() {
-    countdown(examStartDate, "mainExam");
-    countdown(subjects.subject1, "subject1");
-    countdown(subjects.subject2, "subject2");
-    countdown(subjects.subject3, "subject3");
+  function newQuote() {
+    document.getElementById("quoteBox").innerText = quotes[Math.floor(Math.random()*quotes.length)];
   }
 
-  // Initial Load
-  updateQuote();
-  updateTimers();
-
-  // Update every second
-  setInterval(updateTimers, 1000);
-
-  // Change quote every 30 seconds
-  setInterval(updateQuote, 30000);
+  newQuote();
+  update();
+  setInterval(update, 1000);
+  setInterval(newQuote, 30000);
 </script>
 
 </body>
