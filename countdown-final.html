@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LLB L3 Final Countdown</title>
 
   <style>
@@ -13,16 +13,17 @@
       margin: 0;
     }
 
+    /* ================= HEADER ================= */
     header {
       text-align: center;
       padding: 30px 15px;
-      background: radial-gradient(circle, #0f172a, #020617);
+      background: radial-gradient(circle, #022c22, #020617);
     }
 
     h1 {
       margin: 0;
       font-size: 2.8rem;
-      color: #38bdf8;
+      color: #10b981;
     }
 
     .container {
@@ -31,27 +32,28 @@
       padding: 20px;
     }
 
+    /* ================= QUOTE ================= */
     .quote {
       background: #020617;
       padding: 20px;
-      border-left: 6px solid #22d3ee;
+      border-left: 6px solid #34d399;
       margin-bottom: 35px;
       font-size: 1.1rem;
       font-style: italic;
     }
 
-    /* ================= MAIN EXAM TIMER ================= */
+    /* ================= MAIN TIMER ================= */
     .main-timer {
       background: #020617;
       padding: 35px;
       border-radius: 15px;
       text-align: center;
       margin-bottom: 40px;
-      box-shadow: 0 0 25px rgba(56,189,248,0.3);
+      box-shadow: 0 0 25px rgba(16,185,129,0.35);
     }
 
     .main-timer h2 {
-      color: #22d3ee;
+      color: #34d399;
       margin-bottom: 15px;
     }
 
@@ -59,12 +61,12 @@
       font-family: 'Courier New', monospace;
       font-size: 3.5rem;
       letter-spacing: 3px;
-      color: #38bdf8;
+      color: #10b981;
       max-width: 100%;
       word-break: break-word;
     }
 
-    /* ================= SUBJECT TIMERS ================= */
+    /* ================= SUBJECTS ================= */
     .subjects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -76,6 +78,12 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 0 12px rgba(0,0,0,0.6);
+      transition: 0.3s;
+    }
+
+    .subject:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 18px rgba(16,185,129,0.3);
     }
 
     .subject h3 {
@@ -89,8 +97,10 @@
       font-size: 1.5rem;
       letter-spacing: 2px;
       margin-top: 10px;
+      color: #6ee7b7;
     }
 
+    /* ================= FOOTER ================= */
     footer {
       text-align: center;
       padding: 20px;
@@ -98,11 +108,9 @@
       color: #9ca3af;
     }
 
-    /* ================= MOBILE FIX ================= */
+    /* ================= MOBILE ================= */
     @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
+      h1 { font-size: 2rem; }
 
       .digital-big {
         font-size: 2.2rem;
@@ -120,13 +128,9 @@
         letter-spacing: 0.5px;
       }
 
-      .quote {
-        font-size: 1rem;
-      }
+      .quote { font-size: 1rem; }
 
-      footer {
-        font-size: 0.85rem;
-      }
+      footer { font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -139,53 +143,54 @@
 
 <div class="container">
 
-  <!-- MOTIVATION -->
+  <!-- QUOTE -->
   <div class="quote" id="quoteBox"></div>
 
-  <!-- MAIN EXAM -->
+  <!-- MAIN TIMER -->
   <div class="main-timer">
-    <!-- <h2>Overall Exam Countdown</h2> -->
     <div class="digital-big" id="mainExam"></div>
     <h3>Only remaining</h3>
   </div>
 
   <!-- SUBJECTS -->
   <div class="subjects">
-    <div class="subject" style="border-top:4px solid #38bdf8">
+
+    <div class="subject" style="border-top:4px solid #10b981">
       <h3>LLU3601 Legal System and Legal History of Sri Lanka</h3>
       <div class="digital" id="s1"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #f97316">
+    <div class="subject" style="border-top:4px solid #22c55e">
       <h3>LLU3602 Legal Method and Legal Writing</h3>
       <div class="digital" id="s2"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #22c55e">
+    <div class="subject" style="border-top:4px solid #4ade80">
       <h3>LLU3303 Roman Law</h3>
       <div class="digital" id="s3"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #a855f7">
+    <div class="subject" style="border-top:4px solid #16a34a">
       <h3>LLU3604 Constitutional Law I</h3>
       <div class="digital" id="s4"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #eab308">
+    <div class="subject" style="border-top:4px solid #15803d">
       <h3>LLU3505 Equity and Trust Law</h3>
       <div class="digital" id="s5"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #ec4899">
+    <div class="subject" style="border-top:4px solid #166534">
       <h3>LLU3406 Interpretation of Statutes and Documents</h3>
       <div class="digital" id="s6"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #14b8a6">
+    <div class="subject" style="border-top:4px solid #14532d">
       <h3>LTE3603 English for Legal Studies</h3>
       <h4 style="color: #dc2626;">[Date not finalised]</h4>
       <div class="digital" id="s7"></div>
     </div>
+
   </div>
 
 </div>
@@ -195,7 +200,6 @@
 </footer>
 
 <script>
-  /* ================= DATES ================= */
   const examStart = new Date("2026-01-27T09:30:00");
 
   const subjects = [
@@ -205,10 +209,8 @@
     new Date("2026-07-01T13:30:00"),
     new Date("2026-07-04T13:30:00"),
     new Date("2026-07-08T13:30:00"),
-    //new Date("2026-02-02T09:30:00"),
   ];
 
-  /* ================= MOTIVATION ================= */
   const quotes = [
     "Exams reward preparation, not pressure.",
     "One hour of focused study today saves panic tomorrow.",
