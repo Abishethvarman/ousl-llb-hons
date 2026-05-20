@@ -9,12 +9,10 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #020617;
-      /* background: #021a14 */
       color: #e5e7eb;
       margin: 0;
     }
 
-    /* ================= HEADER ================= */
     header {
       text-align: center;
       padding: 30px 15px;
@@ -33,7 +31,6 @@
       padding: 20px;
     }
 
-    /* ================= QUOTE ================= */
     .quote {
       background: #020617;
       padding: 20px;
@@ -43,7 +40,6 @@
       font-style: italic;
     }
 
-    /* ================= MAIN TIMER ================= */
     .main-timer {
       background: #020617;
       padding: 35px;
@@ -54,8 +50,8 @@
     }
 
     .main-timer h2 {
-      color: #34d399;
-      margin-bottom: 15px;
+      color: #d1fae5;
+      margin-bottom: 10px;
     }
 
     .digital-big {
@@ -63,11 +59,8 @@
       font-size: 3.5rem;
       letter-spacing: 3px;
       color: #10b981;
-      max-width: 100%;
-      word-break: break-word;
     }
 
-    /* ================= SUBJECTS ================= */
     .subjects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -90,18 +83,20 @@
     .subject h3 {
       margin-top: 0;
       font-size: 1.1rem;
-      line-height: 1.4;
+    }
+
+    .exam-date {
+      margin: 8px 0;
+      color: #9ca3af;
+      font-size: 0.95rem;
     }
 
     .digital {
       font-family: 'Courier New', monospace;
       font-size: 1.5rem;
-      letter-spacing: 2px;
-      margin-top: 10px;
       color: #6ee7b7;
     }
 
-    /* ================= FOOTER ================= */
     footer {
       text-align: center;
       padding: 20px;
@@ -109,29 +104,10 @@
       color: #9ca3af;
     }
 
-    /* ================= MOBILE ================= */
     @media (max-width: 768px) {
       h1 { font-size: 2rem; }
-
-      .digital-big {
-        font-size: 2.2rem;
-        letter-spacing: 1px;
-      }
-
-      .digital {
-        font-size: 1.3rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .digital-big {
-        font-size: 1.8rem;
-        letter-spacing: 0.5px;
-      }
-
-      .quote { font-size: 1rem; }
-
-      footer { font-size: 0.85rem; }
+      .digital-big { font-size: 2.2rem; }
+      .digital { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -144,56 +120,59 @@
 
 <div class="container">
 
-  <!-- QUOTE -->
   <div class="quote" id="quoteBox"></div>
 
-  <!-- MAIN TIMER -->
   <div class="main-timer">
+    <h2 id="mainDate"></h2>
     <div class="digital-big" id="mainExam"></div>
     <h3>Only remaining</h3>
   </div>
 
-  <!-- SUBJECTS -->
   <div class="subjects">
 
-    <div class="subject" style="border-top:4px solid #10b981">
+    <div class="subject">
       <h3>LLU3601 Legal System and Legal History of Sri Lanka</h3>
+      <div class="exam-date" id="d1"></div>
       <div class="digital" id="s1"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #22c55e">
+    <div class="subject">
       <h3>LLU3602 Legal Method and Legal Writing</h3>
+      <div class="exam-date" id="d2"></div>
       <div class="digital" id="s2"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #4ade80">
+    <div class="subject">
       <h3>LLU3303 Roman Law</h3>
+      <div class="exam-date" id="d3"></div>
       <div class="digital" id="s3"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #16a34a">
+    <div class="subject">
       <h3>LLU3604 Constitutional Law I</h3>
+      <div class="exam-date" id="d4"></div>
       <div class="digital" id="s4"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #15803d">
+    <div class="subject">
       <h3>LLU3505 Equity and Trust Law</h3>
+      <div class="exam-date" id="d5"></div>
       <div class="digital" id="s5"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #166534">
+    <div class="subject">
       <h3>LLU3406 Interpretation of Statutes and Documents</h3>
+      <div class="exam-date" id="d6"></div>
       <div class="digital" id="s6"></div>
     </div>
 
-    <div class="subject" style="border-top:4px solid #14532d">
+    <div class="subject">
       <h3>LTE3603 English for Legal Studies</h3>
-      <h4 style="color: #dc2626;">17 May 2026</h4>
+      <h4 style="color:#dc2626;">17 May 2026</h4>
       <div class="digital" id="s7"></div>
     </div>
 
   </div>
-
 </div>
 
 <footer>
@@ -204,12 +183,12 @@
   const examStart = new Date("2026-06-21T13:30:00");
 
   const subjects = [
-    new Date("2026-06-21T13:30:00"),
-    new Date("2026-06-24T13:30:00"),
-    new Date("2026-06-28T13:30:00"),
-    new Date("2026-07-01T13:30:00"),
-    new Date("2026-07-04T13:30:00"),
-    new Date("2026-07-08T13:30:00"),
+    { id: "s1", dateId: "d1", date: new Date("2026-06-21T13:30:00") },
+    { id: "s2", dateId: "d2", date: new Date("2026-06-24T13:30:00") },
+    { id: "s3", dateId: "d3", date: new Date("2026-06-28T13:30:00") },
+    { id: "s4", dateId: "d4", date: new Date("2026-07-01T13:30:00") },
+    { id: "s5", dateId: "d5", date: new Date("2026-07-04T13:30:00") },
+    { id: "s6", dateId: "d6", date: new Date("2026-07-08T13:30:00") }
   ];
 
   const quotes = [
@@ -233,16 +212,33 @@
       return `${d}d ${h}h ${m}m ${s}s`;
     }
 
-    return `${String(d).padStart(2,'0')}:${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    return `${String(d).padStart(2,'0')}d : ${String(h).padStart(2,'0')}h : ${String(m).padStart(2,'0')}m : ${String(s).padStart(2,'0')}s`;
+  }
+
+  function formatDate(date) {
+    return date.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
   }
 
   function updateTimers() {
     const now = new Date().getTime();
-    document.getElementById("mainExam").innerText = formatDigital(examStart - now);
 
-    subjects.forEach((date, i) => {
-      document.getElementById("s" + (i + 1)).innerText =
-        formatDigital(date - now);
+    document.getElementById("mainExam").innerText =
+      formatDigital(examStart - now);
+
+    document.getElementById("mainDate").innerText =
+      formatDate(examStart);
+
+    subjects.forEach(s => {
+      document.getElementById(s.id).innerText =
+        formatDigital(s.date - now);
+
+      document.getElementById(s.dateId).innerText =
+        formatDate(s.date);
     });
   }
 
