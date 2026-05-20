@@ -38,6 +38,7 @@
       margin-bottom: 35px;
       font-size: 1.1rem;
       font-style: italic;
+      border-radius: 10px;
     }
 
     .main-timer {
@@ -50,8 +51,15 @@
     }
 
     .main-timer h2 {
-      color: #d1fae5;
+      color: #fbbf24;
       margin-bottom: 10px;
+    }
+
+    .main-time {
+      color: #60a5fa;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
 
     .digital-big {
@@ -82,19 +90,38 @@
 
     .subject h3 {
       margin-top: 0;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      color: #f3f4f6;
     }
 
     .exam-date {
-      margin: 8px 0;
-      color: #9ca3af;
+      margin: 8px 0 2px;
+      color: #fbbf24;
       font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .exam-time {
+      color: #60a5fa;
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+      font-weight: 600;
     }
 
     .digital {
       font-family: 'Courier New', monospace;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: #6ee7b7;
+      margin-top: 10px;
+    }
+
+    .finished {
+      color: #ef4444 !important;
+      font-weight: bold;
     }
 
     footer {
@@ -105,9 +132,21 @@
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      .digital-big { font-size: 2.2rem; }
-      .digital { font-size: 1.3rem; }
+      h1 {
+        font-size: 2rem;
+      }
+
+      .digital-big {
+        font-size: 2rem;
+      }
+
+      .digital {
+        font-size: 1.2rem;
+      }
+
+      .subject h3 {
+        min-height: auto;
+      }
     }
   </style>
 </head>
@@ -124,52 +163,76 @@
 
   <div class="main-timer">
     <h2 id="mainDate"></h2>
+    <div class="main-time">Time: 1.30 PM</div>
+
     <div class="digital-big" id="mainExam"></div>
-    <h3>Only remaining</h3>
+
+    <h3>Only Remaining</h3>
   </div>
 
   <div class="subjects">
 
     <div class="subject">
       <h3>LLU3601 Legal System and Legal History of Sri Lanka</h3>
+
       <div class="exam-date" id="d1"></div>
+      <div class="exam-time">Time: 1.30 PM</div>
+
       <div class="digital" id="s1"></div>
     </div>
 
     <div class="subject">
       <h3>LLU3602 Legal Method and Legal Writing</h3>
+
       <div class="exam-date" id="d2"></div>
+      <div class="exam-time">Time: 1.30 PM</div>
+
       <div class="digital" id="s2"></div>
     </div>
 
     <div class="subject">
       <h3>LLU3303 Roman Law</h3>
+
       <div class="exam-date" id="d3"></div>
+      <div class="exam-time">Time: 1.30 PM</div>
+
       <div class="digital" id="s3"></div>
     </div>
 
     <div class="subject">
       <h3>LLU3604 Constitutional Law I</h3>
+
       <div class="exam-date" id="d4"></div>
+      <div class="exam-time">Time: 1.30 PM</div>
+
       <div class="digital" id="s4"></div>
     </div>
 
     <div class="subject">
       <h3>LLU3505 Equity and Trust Law</h3>
+
       <div class="exam-date" id="d5"></div>
+      <div class="exam-time">Time: 1.30 PM</div>
+
       <div class="digital" id="s5"></div>
     </div>
 
     <div class="subject">
       <h3>LLU3406 Interpretation of Statutes and Documents</h3>
+
       <div class="exam-date" id="d6"></div>
+      <div class="exam-time">Time: 1.30 PM</div>
+
       <div class="digital" id="s6"></div>
     </div>
 
     <div class="subject">
       <h3>LTE3603 English for Legal Studies</h3>
-      <h4 style="color:#dc2626;">17 May 2026</h4>
-      <div class="digital" id="s7"></div>
+
+      <div class="exam-date">Sunday, May 17, 2026</div>
+      <div class="exam-time">Time: 1.30 PM</div>
+
+      <div class="digital finished">EXAM OVER</div>
     </div>
 
   </div>
@@ -180,14 +243,20 @@
 </footer>
 
 <script>
+
   const examStart = new Date("2026-06-21T13:30:00");
 
   const subjects = [
     { id: "s1", dateId: "d1", date: new Date("2026-06-21T13:30:00") },
+
     { id: "s2", dateId: "d2", date: new Date("2026-06-24T13:30:00") },
+
     { id: "s3", dateId: "d3", date: new Date("2026-06-28T13:30:00") },
+
     { id: "s4", dateId: "d4", date: new Date("2026-07-01T13:30:00") },
+
     { id: "s5", dateId: "d5", date: new Date("2026-07-04T13:30:00") },
+
     { id: "s6", dateId: "d6", date: new Date("2026-07-08T13:30:00") }
   ];
 
@@ -201,11 +270,13 @@
   ];
 
   function formatDigital(ms) {
-    if (ms < 0) return "00d 00h 00m 00s";
 
-    const d = Math.floor(ms / (1000*60*60*24));
-    const h = Math.floor((ms / (1000*60*60)) % 24);
-    const m = Math.floor((ms / (1000*60)) % 60);
+    const d = Math.floor(ms / (1000 * 60 * 60 * 24));
+
+    const h = Math.floor((ms / (1000 * 60 * 60)) % 24);
+
+    const m = Math.floor((ms / (1000 * 60)) % 60);
+
     const s = Math.floor((ms / 1000) % 60);
 
     if (window.innerWidth < 480) {
@@ -225,32 +296,67 @@
   }
 
   function updateTimers() {
+
     const now = new Date().getTime();
 
-    document.getElementById("mainExam").innerText =
-      formatDigital(examStart - now);
+    // MAIN COUNTDOWN
+
+    const mainRemaining = examStart - now;
+
+    if (mainRemaining <= 0) {
+
+      document.getElementById("mainExam").innerText =
+        "EXAM HAS STARTED";
+
+      document.getElementById("mainExam").classList.add("finished");
+
+    } else {
+
+      document.getElementById("mainExam").innerText =
+        formatDigital(mainRemaining);
+    }
 
     document.getElementById("mainDate").innerText =
       formatDate(examStart);
 
-    subjects.forEach(s => {
-      document.getElementById(s.id).innerText =
-        formatDigital(s.date - now);
+    // SUBJECT COUNTDOWNS
 
-      document.getElementById(s.dateId).innerText =
-        formatDate(s.date);
+    subjects.forEach(subject => {
+
+      const remaining = subject.date - now;
+
+      const element = document.getElementById(subject.id);
+
+      if (remaining <= 0) {
+
+        element.innerText = "EXAM OVER";
+
+        element.classList.add("finished");
+
+      } else {
+
+        element.innerText = formatDigital(remaining);
+      }
+
+      document.getElementById(subject.dateId).innerText =
+        formatDate(subject.date);
     });
   }
 
   function newQuote() {
+
     document.getElementById("quoteBox").innerText =
       quotes[Math.floor(Math.random() * quotes.length)];
   }
 
   newQuote();
+
   updateTimers();
+
   setInterval(updateTimers, 1000);
+
   setInterval(newQuote, 30000);
+
 </script>
 
 </body>
