@@ -1,17 +1,653 @@
-<!doctype html>
-<html lang="ta"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contract Law – 30 MCQ</title>
+
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contract Law – 30 MCQ</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;padding:22px;background:#f3f5f9;color:#172033;font-family:Arial,"Noto Sans Tamil",sans-serif}.wrap{max-width:900px;margin:auto}header,.panel{background:#fff;border:1px solid #dfe5ee;border-radius:15px;padding:22px;margin-bottom:16px}h1{font-size:1.55rem;margin:0 0 8px}.muted{color:#64748b;line-height:1.6}.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}button{border:0;border-radius:9px;padding:11px 17px;background:#2459d3;color:white;font-size:1rem;cursor:pointer}button.secondary{background:#e8edf5;color:#172033}button:disabled{opacity:.45;cursor:not-allowed}.progress{height:8px;background:#e8edf5;border-radius:20px;margin-top:15px;overflow:hidden}.bar{height:100%;width:0;background:#2459d3;transition:width .2s}.topic{display:inline-block;background:#edf1ff;color:#343e91;border-radius:20px;padding:6px 11px;font-size:.88rem}.scenario{font-size:1.08rem;line-height:1.85;margin:17px 0}.option{display:flex;gap:11px;padding:13px;border:1px solid #dbe2ec;border-radius:10px;margin:9px 0;cursor:pointer;line-height:1.65}.option:hover{background:#f8faff}.option input{margin-top:5px;accent-color:#2459d3}.option.correct{background:#effaf2;border-color:#22a45a}.option.wrong{background:#fff1f0;border-color:#df4a43}.feedback{display:none;padding:15px;border-radius:10px;margin-top:16px;line-height:1.8}.feedback.show{display:block}.feedback.good{background:#effaf2;border:1px solid #8bd3a2}.feedback.bad{background:#fff7ed;border:1px solid #fdba74}.hidden{display:none}.summary{font-weight:bold;font-size:1.15rem}@media(max-width:600px){body{padding:10px}header,.panel{padding:16px}h1{font-size:1.3rem}}
-</style></head><body><main class="wrap">
-<header><div class="top"><div><h1>ஒப்பந்தச் சட்டம் – 30 MCQ</h1><div class="muted">Contract or Not a Contract? · LL.B. பயிற்சி</div></div><strong id="score">மதிப்பெண்: —</strong></div>
-<p class="muted">தனி <b>questions.json</b> கோப்பைத் தேர்ந்தெடுக்கவும். ஒவ்வொரு பதிலையும் சரிபார்த்தவுடன் சரியான விடையும் விரிவான காரணமும் காட்டப்படும்.</p><input type="file" id="jsonFile" accept=".json,application/json"><div id="loadMsg" class="muted">முதலில் questions.json கோப்பைத் தேர்ந்தெடுக்கவும்.</div><div class="progress"><div class="bar" id="bar"></div></div></header>
-<section class="panel hidden" id="quiz"><div class="top"><span id="counter" class="muted"></span><span id="answered" class="muted"></span></div><p id="topic" class="topic"></p><div id="scenario" class="scenario"></div><form id="options"></form><div id="feedback" class="feedback" aria-live="polite"></div><div class="actions"><button id="submit" type="button" disabled>பதிலைச் சரிபார்க்கவும்</button><button id="next" type="button" class="secondary hidden">அடுத்த வினா →</button></div></section>
-<section class="panel hidden" id="finished"><h2>பயிற்சி நிறைவடைந்தது!</h2><p id="finalScore" class="summary"></p><p id="finalText"></p><button id="restart">மீண்டும் தொடங்கவும்</button></section></main>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 22px;
+    background: #f3f5f9;
+    color: #172033;
+    font-family: Arial, "Noto Sans Tamil", sans-serif;
+}
+
+.wrap {
+    max-width: 900px;
+    margin: auto;
+}
+
+header, .panel {
+    background: #fff;
+    border: 1px solid #dfe5ee;
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 1.55rem;
+    margin: 0 0 8px;
+}
+
+.muted {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+button {
+    border: 0;
+    border-radius: 9px;
+    padding: 11px 17px;
+    background: #2459d3;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button.secondary {
+    background: #e8edf5;
+    color: #172033;
+}
+
+button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.progress {
+    height: 8px;
+    background: #e8edf5;
+    border-radius: 20px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    width: 0;
+    background: #2459d3;
+    transition: width .2s;
+}
+
+.topic {
+    display: inline-block;
+    background: #edf1ff;
+    color: #343e91;
+    border-radius: 20px;
+    padding: 6px 11px;
+    font-size: .88rem;
+}
+
+.scenario {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    margin: 17px 0;
+}
+
+.option {
+    display: flex;
+    gap: 11px;
+    padding: 13px;
+    border: 1px solid #dbe2ec;
+    border-radius: 10px;
+    margin: 9px 0;
+    cursor: pointer;
+    line-height: 1.65;
+}
+
+.option:hover {
+    background: #f8faff;
+}
+
+.option input {
+    margin-top: 5px;
+    accent-color: #2459d3;
+}
+
+.option.correct {
+    background: #effaf2;
+    border-color: #22a45a;
+}
+
+.option.wrong {
+    background: #fff1f0;
+    border-color: #df4a43;
+}
+
+.feedback {
+    display: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 16px;
+    line-height: 1.8;
+}
+
+.feedback.show {
+    display: block;
+}
+
+.feedback.good {
+    background: #effaf2;
+    border: 1px solid #8bd3a2;
+}
+
+.feedback.bad {
+    background: #fff7ed;
+    border: 1px solid #fdba74;
+}
+
+.hidden {
+    display: none;
+}
+
+.summary {
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+@media(max-width:600px) {
+    body {
+        padding: 10px;
+    }
+
+    header, .panel {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="wrap">
+
+<header>
+
+    <div class="top">
+
+        <div>
+            <h1>ஒப்பந்தச் சட்டம் – 30 MCQ</h1>
+
+            <div class="muted">
+                Contract or Not a Contract? · LL.B. பயிற்சி
+            </div>
+        </div>
+
+        <strong id="score">மதிப்பெண்: —</strong>
+
+    </div>
+
+    <p class="muted">
+        ஒவ்வொரு வினாவிற்கும் சரியான பதிலைத் தேர்ந்தெடுக்கவும்.
+        பதிலைச் சரிபார்த்தவுடன் சரியான விடையும் விரிவான காரணமும் காட்டப்படும்.
+    </p>
+
+    <div id="loadMsg" class="muted">
+        வினாக்கள் ஏற்றப்படுகின்றன...
+    </div>
+
+    <div class="progress">
+        <div class="bar" id="bar"></div>
+    </div>
+
+</header>
+
+
+<section class="panel hidden" id="quiz">
+
+    <div class="top">
+
+        <span id="counter" class="muted"></span>
+
+        <span id="answered" class="muted"></span>
+
+    </div>
+
+    <p id="topic" class="topic"></p>
+
+    <div id="scenario" class="scenario"></div>
+
+    <form id="options"></form>
+
+    <div id="feedback"
+         class="feedback"
+         aria-live="polite">
+    </div>
+
+    <div class="actions">
+
+        <button id="submit" type="button" disabled>
+            பதிலைச் சரிபார்க்கவும்
+        </button>
+
+        <button id="next"
+                type="button"
+                class="secondary hidden">
+            அடுத்த வினா →
+        </button>
+
+    </div>
+
+</section>
+
+
+<section class="panel hidden" id="finished">
+
+    <h2>பயிற்சி நிறைவடைந்தது!</h2>
+
+    <p id="finalScore" class="summary"></p>
+
+    <p id="finalText"></p>
+
+    <button id="restart">
+        மீண்டும் தொடங்கவும்
+    </button>
+
+</section>
+
+</main>
+
+
 <script>
-let questions=[],index=0,score=0,completed=0,selected=null,locked=false;const $=id=>document.getElementById(id);
-$('jsonFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!Array.isArray(data)||!data.length||!data.every(q=>q.scenario&&Array.isArray(q.options)&&Number.isInteger(q.answer)&&q.explanation))throw Error('JSON வடிவம் சரியாக இல்லை.');questions=data;index=score=completed=0;$('quiz').classList.remove('hidden');$('finished').classList.add('hidden');$('loadMsg').textContent=questions.length+' வினாக்கள் ஏற்றப்பட்டன.';render()}catch(err){$('loadMsg').textContent='ஏற்ற முடியவில்லை: '+err.message}});
-function render(){selected=null;locked=false;const q=questions[index];$('counter').textContent=`வினா ${index+1} / ${questions.length}`;$('answered').textContent=`முடித்தவை: ${completed}`;$('topic').textContent=q.topic;$('scenario').textContent=q.scenario;$('options').innerHTML='';q.options.forEach((opt,i)=>{const label=document.createElement('label');label.className='option';const radio=document.createElement('input');radio.type='radio';radio.name='answer';radio.value=i;radio.addEventListener('change',()=>{selected=i;$('submit').disabled=false});const span=document.createElement('span');span.textContent=String.fromCharCode(65+i)+'. '+opt;label.append(radio,span);$('options').append(label)});$('feedback').className='feedback';$('feedback').textContent='';$('submit').disabled=true;$('submit').classList.remove('hidden');$('next').classList.add('hidden');$('bar').style.width=(completed/questions.length*100)+'%';$('score').textContent='மதிப்பெண்: '+score+'/'+completed}
-$('submit').addEventListener('click',()=>{if(selected===null||locked)return;locked=true;const q=questions[index],correct=selected===q.answer;if(correct)score++;completed++;[...$('options').querySelectorAll('.option')].forEach((el,i)=>{if(i===q.answer)el.classList.add('correct');if(i===selected&&!correct)el.classList.add('wrong');el.querySelector('input').disabled=true});const f=$('feedback');f.className='feedback show '+(correct?'good':'bad');const heading=document.createElement('strong');heading.textContent=correct?'சரியான பதில்! ✓':'சரியான பதில்: '+String.fromCharCode(65+q.answer);const reason=document.createElement('p');reason.textContent=q.explanation;f.append(heading,reason);$('submit').classList.add('hidden');$('next').textContent=index===questions.length-1?'முடிவைப் பார்க்கவும்':'அடுத்த வினா →';$('next').classList.remove('hidden');$('answered').textContent=`முடித்தவை: ${completed}`;$('score').textContent='மதிப்பெண்: '+score+'/'+completed;$('bar').style.width=(completed/questions.length*100)+'%'});
-$('next').addEventListener('click',()=>{if(index<questions.length-1){index++;render()}else{$('quiz').classList.add('hidden');$('finished').classList.remove('hidden');$('finalScore').textContent=`உங்கள் மதிப்பெண்: ${score} / ${questions.length} (${Math.round(score/questions.length*100)}%)`;$('finalText').textContent=score>=25?'மிகச் சிறந்தது!':score>=18?'நல்ல முயற்சி. தவறான விடைகளின் விளக்கங்களை மீண்டும் படியுங்கள்.':'ஒவ்வொரு தலைப்பையும் மீண்டும் படித்து மறுபடியும் முயற்சி செய்யுங்கள்.';$('score').textContent='இறுதி மதிப்பெண்: '+score+'/'+questions.length}});
-$('restart').addEventListener('click',()=>{index=score=completed=0;$('finished').classList.add('hidden');$('quiz').classList.remove('hidden');render()});
-</script></body></html>
+
+let questions = [];
+
+let index = 0;
+let score = 0;
+let completed = 0;
+
+let selected = null;
+let locked = false;
+
+const $ = id => document.getElementById(id);
+
+
+// ====================================
+// SHUFFLE FUNCTION
+// ====================================
+
+function shuffleArray(array) {
+
+    const shuffled = [...array];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [shuffled[i], shuffled[j]] =
+        [shuffled[j], shuffled[i]];
+
+    }
+
+    return shuffled;
+}
+
+
+// ====================================
+// LOAD QUESTIONS AUTOMATICALLY
+// ====================================
+
+async function loadQuestions() {
+
+    try {
+
+        const response = await fetch('./questions.json');
+
+        if (!response.ok) {
+            throw new Error('questions.json file not found.');
+        }
+
+        const data = await response.json();
+
+        if (
+            !Array.isArray(data) ||
+            data.length === 0 ||
+            !data.every(q =>
+                q.scenario &&
+                Array.isArray(q.options) &&
+                q.options.length >= 2 &&
+                Number.isInteger(q.answer) &&
+                q.answer >= 0 &&
+                q.answer < q.options.length &&
+                q.explanation
+            )
+        ) {
+            throw new Error('JSON வடிவம் சரியாக இல்லை.');
+        }
+
+        questions = shuffleArray(data);
+
+        index = 0;
+        score = 0;
+        completed = 0;
+
+        $('quiz').classList.remove('hidden');
+        $('finished').classList.add('hidden');
+
+        $('loadMsg').textContent =
+            questions.length +
+            ' வினாக்கள் வெற்றிகரமாக ஏற்றப்பட்டன.';
+
+        render();
+
+    }
+
+    catch (err) {
+
+        $('loadMsg').textContent =
+            'வினாக்களை ஏற்ற முடியவில்லை: ' + err.message;
+
+        console.error(err);
+
+    }
+
+}
+
+
+// ====================================
+// DISPLAY QUESTION
+// ====================================
+
+function render() {
+
+    selected = null;
+    locked = false;
+
+    const q = questions[index];
+
+    // Shuffle answer options
+    // Original index is preserved to track correct answer
+
+    const shuffledOptions = shuffleArray(
+
+        q.options.map((option, originalIndex) => ({
+            option,
+            originalIndex
+        }))
+
+    );
+
+    q.displayOptions = shuffledOptions.map(
+        item => item.option
+    );
+
+    q.displayAnswer = shuffledOptions.findIndex(
+        item => item.originalIndex === q.answer
+    );
+
+
+    $('counter').textContent =
+        `வினா ${index + 1} / ${questions.length}`;
+
+    $('answered').textContent =
+        `முடித்தவை: ${completed}`;
+
+    $('topic').textContent = q.topic || '';
+
+    $('scenario').textContent = q.scenario;
+
+
+    // Clear previous options
+
+    $('options').innerHTML = '';
+
+
+    // Create answer options
+
+    q.displayOptions.forEach((opt, i) => {
+
+        const label = document.createElement('label');
+
+        label.className = 'option';
+
+
+        const radio = document.createElement('input');
+
+        radio.type = 'radio';
+        radio.name = 'answer';
+        radio.value = i;
+
+
+        radio.addEventListener('change', () => {
+
+            selected = i;
+
+            $('submit').disabled = false;
+
+        });
+
+
+        const span = document.createElement('span');
+
+        span.textContent =
+            String.fromCharCode(65 + i) + '. ' + opt;
+
+
+        label.append(radio, span);
+
+        $('options').append(label);
+
+    });
+
+
+    // Reset feedback
+
+    $('feedback').className = 'feedback';
+
+    $('feedback').textContent = '';
+
+
+    $('submit').disabled = true;
+
+    $('submit').classList.remove('hidden');
+
+    $('next').classList.add('hidden');
+
+
+    $('bar').style.width =
+        (completed / questions.length * 100) + '%';
+
+
+    $('score').textContent =
+        'மதிப்பெண்: ' + score + '/' + completed;
+
+}
+
+
+// ====================================
+// CHECK ANSWER
+// ====================================
+
+$('submit').addEventListener('click', () => {
+
+    if (selected === null || locked) return;
+
+    locked = true;
+
+    const q = questions[index];
+
+    const correct = selected === q.displayAnswer;
+
+
+    if (correct) {
+        score++;
+    }
+
+    completed++;
+
+
+    // Highlight correct and wrong answers
+
+    [...$('options').querySelectorAll('.option')]
+        .forEach((el, i) => {
+
+            if (i === q.displayAnswer) {
+                el.classList.add('correct');
+            }
+
+            if (i === selected && !correct) {
+                el.classList.add('wrong');
+            }
+
+            el.querySelector('input').disabled = true;
+
+        });
+
+
+    // Display explanation
+
+    const f = $('feedback');
+
+    f.className =
+        'feedback show ' + (correct ? 'good' : 'bad');
+
+
+    const heading = document.createElement('strong');
+
+    heading.textContent = correct
+        ? 'சரியான பதில்! ✓'
+        : 'சரியான பதில்: ' +
+          String.fromCharCode(65 + q.displayAnswer);
+
+
+    const reason = document.createElement('p');
+
+    reason.textContent = q.explanation;
+
+
+    f.append(heading, reason);
+
+
+    $('submit').classList.add('hidden');
+
+
+    $('next').textContent =
+        index === questions.length - 1
+            ? 'முடிவைப் பார்க்கவும்'
+            : 'அடுத்த வினா →';
+
+
+    $('next').classList.remove('hidden');
+
+
+    $('answered').textContent =
+        `முடித்தவை: ${completed}`;
+
+
+    $('score').textContent =
+        'மதிப்பெண்: ' + score + '/' + completed;
+
+
+    $('bar').style.width =
+        (completed / questions.length * 100) + '%';
+
+});
+
+
+// ====================================
+// NEXT QUESTION / FINAL RESULT
+// ====================================
+
+$('next').addEventListener('click', () => {
+
+    if (index < questions.length - 1) {
+
+        index++;
+
+        render();
+
+    }
+
+    else {
+
+        $('quiz').classList.add('hidden');
+
+        $('finished').classList.remove('hidden');
+
+
+        const percentage =
+            Math.round(score / questions.length * 100);
+
+
+        $('finalScore').textContent =
+            `உங்கள் மதிப்பெண்: ${score} / ${questions.length} (${percentage}%)`;
+
+
+        $('finalText').textContent =
+            score >= 25
+                ? 'மிகச் சிறந்தது!'
+                : score >= 18
+                    ? 'நல்ல முயற்சி. தவறான விடைகளின் விளக்கங்களை மீண்டும் படியுங்கள்.'
+                    : 'ஒவ்வொரு தலைப்பையும் மீண்டும் படித்து மறுபடியும் முயற்சி செய்யுங்கள்.';
+
+
+        $('score').textContent =
+            'இறுதி மதிப்பெண்: ' +
+            score + '/' + questions.length;
+
+    }
+
+});
+
+
+// ====================================
+// RESTART QUIZ
+// ====================================
+
+$('restart').addEventListener('click', () => {
+
+    index = 0;
+    score = 0;
+    completed = 0;
+
+    // Randomize question order again
+
+    questions = shuffleArray(questions);
+
+    $('finished').classList.add('hidden');
+
+    $('quiz').classList.remove('hidden');
+
+    render();
+
+});
+
+
+// ====================================
+// START
+// ====================================
+
+loadQuestions();
+
+</script>
+
+</body>
+</html>
