@@ -4,12 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LLB CAT 1 Countdown</title>
+<title>LLB CAT 1 Countdown | Level 3 & 4</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   font-family: 'Segoe UI', sans-serif;
@@ -21,19 +19,16 @@ body {
 header {
   text-align: center;
   padding: 35px 15px;
-  background: radial-gradient(circle, #064e3b, #020617);
+  background: radial-gradient(circle, #022c22, #020617);
 }
 
 h1 {
-  margin: 0;
-  font-size: 2.5rem;
   color: #10b981;
+  font-size: 2.5rem;
+  margin: 0;
 }
 
-header p {
-  color: #9ca3af;
-  margin-bottom: 0;
-}
+header p { color: #9ca3af; }
 
 .container {
   max-width: 1150px;
@@ -45,77 +40,86 @@ header p {
   background: #0f172a;
   padding: 20px;
   border-left: 5px solid #34d399;
-  margin-bottom: 30px;
-  font-size: 1.05rem;
-  font-style: italic;
   border-radius: 10px;
+  font-style: italic;
+  margin-bottom: 35px;
+}
+
+.level-section {
+  margin-bottom: 55px;
+  padding: 22px;
+  background: #07101f;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+}
+
+.level-heading {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.level-heading h2 {
+  color: #34d399;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.level-heading p {
+  color: #94a3b8;
+  margin: 0;
 }
 
 .main-timer {
   background: #0f172a;
-  padding: 35px 20px;
-  border-radius: 15px;
+  padding: 30px 15px;
+  border-radius: 14px;
   text-align: center;
-  margin-bottom: 35px;
-  box-shadow: 0 0 25px rgba(16,185,129,0.2);
+  margin-bottom: 30px;
+  box-shadow: 0 0 20px rgba(16,185,129,0.15);
 }
 
-.main-timer h2 {
+.main-timer h3 {
   color: #fbbf24;
+  margin-top: 0;
 }
 
 .main-date {
   color: #60a5fa;
   font-weight: bold;
-  margin: 15px;
+  margin: 15px 0;
 }
 
 .digital-big {
   font-family: 'Courier New', monospace;
-  font-size: clamp(1.7rem, 5vw, 3.5rem);
   color: #10b981;
+  font-size: clamp(1.6rem, 5vw, 3rem);
   font-weight: bold;
-}
-
-.section-title {
-  color: #34d399;
-  margin: 35px 0 18px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #1e293b;
 }
 
 .subjects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
 }
 
 .subject {
   background: #0f172a;
-  padding: 22px;
-  border-radius: 12px;
   border: 1px solid #1e293b;
+  padding: 20px;
+  border-radius: 12px;
   transition: 0.3s;
 }
 
 .subject:hover {
   transform: translateY(-4px);
   border-color: #10b981;
-  box-shadow: 0 0 18px rgba(16,185,129,0.15);
-}
-
-.level {
-  color: #34d399;
-  font-size: 0.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
 }
 
 .subject h3 {
+  color: #f3f4f6;
   font-size: 1.05rem;
   line-height: 1.5;
-  min-height: 55px;
-  color: #f3f4f6;
+  min-height: 50px;
 }
 
 .code {
@@ -125,57 +129,47 @@ header p {
 
 .exam-date {
   color: #fbbf24;
-  font-weight: 600;
   margin-top: 15px;
+  font-weight: 600;
 }
 
 .exam-time {
   color: #60a5fa;
-  font-size: 0.9rem;
   margin-top: 7px;
+  font-size: 0.9rem;
 }
 
 .sessions {
-  margin-top: 15px;
-  padding: 10px;
   background: #020617;
-  border-radius: 7px;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 15px;
   color: #a7f3d0;
   font-size: 0.9rem;
 }
 
 .digital {
   font-family: 'Courier New', monospace;
-  font-size: 1.25rem;
   color: #6ee7b7;
-  margin-top: 20px;
   font-weight: bold;
+  font-size: 1.15rem;
+  margin-top: 20px;
   overflow-wrap: anywhere;
 }
 
-.finished {
-  color: #ef4444 !important;
-}
+.finished { color: #ef4444 !important; }
 
 footer {
   text-align: center;
   padding: 25px;
   color: #9ca3af;
-  font-size: 0.9rem;
 }
 
 @media(max-width:600px) {
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  .container {
-    padding: 12px;
-  }
-
-  .main-timer {
-    padding: 25px 12px;
-  }
+  h1 { font-size: 1.9rem; }
+  .container { padding: 10px; }
+  .level-section { padding: 12px; }
+  .subject h3 { min-height: auto; }
 }
 </style>
 </head>
@@ -184,47 +178,69 @@ footer {
 
 <header>
   <h1>LLB CAT 1 Countdown</h1>
-  <p>Level 3 & Level 4 | Continuous Assessment Test 1</p>
+  <p>Continuous Assessment Test 1 | December 2026</p>
 </header>
 
 <div class="container">
 
-  <div class="quote" id="quoteBox"></div>
+<div class="quote" id="quoteBox"></div>
 
-  <div class="main-timer">
-    <h2>FIRST CAT 1 ASSESSMENT</h2>
-    <div class="main-date" id="mainDate"></div>
-    <div class="digital-big" id="mainExam"></div>
-    <h3>Time Remaining</h3>
+<!-- LEVEL 3 -->
+
+<section class="level-section">
+
+  <div class="level-heading">
+    <h2>LEVEL 3</h2>
+    <p>LLB – Third Year | CAT 1 Assessments</p>
   </div>
 
-  <h2 class="section-title">LEVEL 3 – CAT 1</h2>
+  <div class="main-timer">
+    <h3>LEVEL 3 – NEXT ASSESSMENT</h3>
+    <div class="main-date" id="l3Date"></div>
+    <div class="digital-big" id="l3Main"></div>
+    <p>Time Remaining</p>
+  </div>
 
   <div class="subjects" id="level3"></div>
 
-  <h2 class="section-title">LEVEL 4 – CAT 1</h2>
+</section>
+
+<!-- LEVEL 4 -->
+
+<section class="level-section">
+
+  <div class="level-heading">
+    <h2>LEVEL 4</h2>
+    <p>LLB – Fourth Year | CAT 1 Assessments</p>
+  </div>
+
+  <div class="main-timer">
+    <h3>LEVEL 4 – NEXT ASSESSMENT</h3>
+    <div class="main-date" id="l4Date"></div>
+    <div class="digital-big" id="l4Main"></div>
+    <p>Time Remaining</p>
+  </div>
 
   <div class="subjects" id="level4"></div>
+
+</section>
 
 </div>
 
 <footer>
   Study with discipline. Practice with integrity.
+  <br>
   Enter every assessment with confidence.
   <br><br>
-  LLB | Level 3 & Level 4 | CAT 1 – 2026
+  LLB CAT 1 | 2026
 </footer>
 
 <script>
 
-// All dates and times use Sri Lankan local time.
+// Assessment schedule
 
-const subjects = [
-
-  // LEVEL 3
-
+const level3 = [
   {
-    level: "LEVEL 3",
     code: "LLU3601",
     name: "Legal System and Legal History of Sri Lanka",
     date: "2026-12-13",
@@ -233,7 +249,6 @@ const subjects = [
     sessions: "Sessions 1–4"
   },
   {
-    level: "LEVEL 3",
     code: "LLU3602",
     name: "Legal Method and Legal Writing",
     date: "2026-12-13",
@@ -242,7 +257,6 @@ const subjects = [
     sessions: "All Sessions of Legal Writing (Part II)"
   },
   {
-    level: "LEVEL 3",
     code: "LLU3303",
     name: "Roman Law",
     date: "2026-12-16",
@@ -251,7 +265,6 @@ const subjects = [
     sessions: "Sessions 1–3"
   },
   {
-    level: "LEVEL 3",
     code: "LLU3604",
     name: "Constitutional Law I",
     date: "2026-12-16",
@@ -260,7 +273,6 @@ const subjects = [
     sessions: "Sessions 1–5"
   },
   {
-    level: "LEVEL 3",
     code: "LLU3505",
     name: "Equity and Trusts Law",
     date: "2026-12-19",
@@ -269,19 +281,17 @@ const subjects = [
     sessions: "Sessions 1–4"
   },
   {
-    level: "LEVEL 3",
     code: "LLU3406",
     name: "Interpretation of Statutes and Documents",
     date: "2026-12-19",
     time: "11:30 PM",
     end: "12:30 PM",
     sessions: "Sessions 1–5"
-  },
+  }
+];
 
-  // LEVEL 4
-
+const level4 = [
   {
-    level: "LEVEL 4",
     code: "LLU4607",
     name: "Law of Contract",
     date: "2026-12-14",
@@ -290,7 +300,6 @@ const subjects = [
     sessions: "CAT 1"
   },
   {
-    level: "LEVEL 4",
     code: "LLU4608",
     name: "Criminal Law",
     date: "2026-12-14",
@@ -299,7 +308,6 @@ const subjects = [
     sessions: "CAT 1"
   },
   {
-    level: "LEVEL 4",
     code: "LLU4609",
     name: "Family Law",
     date: "2026-12-17",
@@ -308,7 +316,6 @@ const subjects = [
     sessions: "CAT 1"
   },
   {
-    level: "LEVEL 4",
     code: "LLU4312",
     name: "Art of Advocacy",
     date: "2026-12-17",
@@ -317,7 +324,6 @@ const subjects = [
     sessions: "CAT 1"
   },
   {
-    level: "LEVEL 4",
     code: "LLU4610",
     name: "Constitutional Law II",
     date: "2026-12-20",
@@ -326,7 +332,6 @@ const subjects = [
     sessions: "CAT 1"
   },
   {
-    level: "LEVEL 4",
     code: "LLU4611",
     name: "Land Law",
     date: "2026-12-20",
@@ -336,8 +341,7 @@ const subjects = [
   }
 ];
 
-// Convert local date and time into a Date object.
-// Supports times such as 09:30 PM.
+// Date conversion using local Sri Lankan time
 
 function makeDate(date, time) {
   const [year, month, day] = date.split("-").map(Number);
@@ -363,84 +367,64 @@ function formatDate(date) {
 }
 
 function formatDigital(ms) {
-  const days = Math.floor(ms / 86400000);
-  const hours = Math.floor((ms / 3600000) % 24);
-  const minutes = Math.floor((ms / 60000) % 60);
-  const seconds = Math.floor((ms / 1000) % 60);
+  const d = Math.floor(ms / 86400000);
+  const h = Math.floor((ms / 3600000) % 24);
+  const m = Math.floor((ms / 60000) % 60);
+  const s = Math.floor((ms / 1000) % 60);
 
-  return `${String(days).padStart(2,"0")}d :
-          ${String(hours).padStart(2,"0")}h :
-          ${String(minutes).padStart(2,"0")}m :
-          ${String(seconds).padStart(2,"0")}s`;
+  return `${String(d).padStart(2,"0")}d : ${String(h).padStart(2,"0")}h : ${String(m).padStart(2,"0")}m : ${String(s).padStart(2,"0")}s`;
 }
 
-function renderSubjects() {
+// Create subject cards
 
-  ["LEVEL 3", "LEVEL 4"].forEach(level => {
+function renderSubjects(subjects, containerId) {
+  const container = document.getElementById(containerId);
 
-    const container = document.getElementById(
-      level === "LEVEL 3" ? "level3" : "level4"
-    );
-
-    const filtered = subjects.filter(s => s.level === level);
-
-    container.innerHTML = filtered.map((s, index) => `
-      <div class="subject">
-        <div class="level">${s.level}</div>
-        <h3>${s.name}</h3>
-        <div class="code">${s.code}</div>
-        <div class="exam-date">${formatDate(makeDate(s.date, s.time))}</div>
-        <div class="exam-time">
-          Time: ${s.time} – ${s.end}
-        </div>
-        <div class="sessions">
-          <strong>Sessions to be studied:</strong><br>
-          ${s.sessions}
-        </div>
-        <div class="digital" id="timer-${s.code}">
-          Loading...
-        </div>
+  container.innerHTML = subjects.map(s => `
+    <div class="subject">
+      <h3>${s.name}</h3>
+      <div class="code">${s.code}</div>
+      <div class="exam-date">
+        ${formatDate(makeDate(s.date, s.time))}
       </div>
-    `).join("");
-
-  });
+      <div class="exam-time">
+        Time: ${s.time} – ${s.end}
+      </div>
+      <div class="sessions">
+        <strong>Sessions to be studied:</strong><br>
+        ${s.sessions}
+      </div>
+      <div class="digital" id="timer-${s.code}"></div>
+    </div>
+  `).join("");
 }
 
-function updateTimers() {
+// Independent countdown for each level
 
+function updateLevel(subjects, mainId, dateId) {
   const now = new Date();
 
   const upcoming = subjects
-    .map(s => ({
-      subject: s,
-      date: makeDate(s.date, s.time)
-    }))
-    .filter(s => s.date > now)
-    .sort((a, b) => a.date - b.date);
+    .map(s => ({subject: s, date: makeDate(s.date, s.time)}))
+    .filter(x => x.date > now)
+    .sort((a,b) => a.date - b.date);
 
-  const main = document.getElementById("mainExam");
+  const main = document.getElementById(mainId);
+  const date = document.getElementById(dateId);
 
-  if (upcoming.length > 0) {
-
-    const next = upcoming[0];
-
-    main.textContent = formatDigital(next.date - now);
-    document.getElementById("mainDate").textContent =
-      next.subject.level + " | " +
-      next.subject.code + " | " +
-      formatDate(next.date);
-
+  if (upcoming.length) {
+    main.textContent = formatDigital(upcoming[0].date - now);
+    date.textContent =
+      upcoming[0].subject.code + " | " +
+      formatDate(upcoming[0].date);
+    main.classList.remove("finished");
   } else {
-
-    main.textContent = "ALL ASSESSMENTS COMPLETED";
+    main.textContent = "ALL COMPLETED";
     main.classList.add("finished");
-    document.getElementById("mainDate").textContent =
-      "CAT 1 – December 2026";
-
+    date.textContent = "All CAT 1 assessments completed";
   }
 
   subjects.forEach(s => {
-
     const exam = makeDate(s.date, s.time);
     const element = document.getElementById("timer-" + s.code);
 
@@ -449,10 +433,12 @@ function updateTimers() {
       element.classList.add("finished");
     } else {
       element.textContent = formatDigital(exam - now);
+      element.classList.remove("finished");
     }
-
   });
 }
+
+// Motivational quotes
 
 const quotes = [
   "Exams reward preparation, not pressure.",
@@ -468,8 +454,7 @@ const quotes = [
   "Master the basics and the marks will follow.",
   "Stay focused. Your goals deserve your full effort.",
   "Pressure is temporary. Achievement lasts.",
-  "Success is built quietly through daily consistency.",
-  "Keep studying. Future victories are being prepared today."
+  "Success is built quietly through daily consistency."
 ];
 
 function newQuote() {
@@ -477,7 +462,14 @@ function newQuote() {
     quotes[Math.floor(Math.random() * quotes.length)];
 }
 
-renderSubjects();
+function updateTimers() {
+  updateLevel(level3, "l3Main", "l3Date");
+  updateLevel(level4, "l4Main", "l4Date");
+}
+
+renderSubjects(level3, "level3");
+renderSubjects(level4, "level4");
+
 newQuote();
 updateTimers();
 
